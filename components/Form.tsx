@@ -1,88 +1,79 @@
-import React from 'react';
-import { useState } from 'react';
-import { withFormik } from 'formik';
-import Field from './Field';
-const fields = {
-  sections: [
-    [
-      {
-        name: 'name',
-        elementName: 'input',
-        type: 'number',
-        placeholder: 'Enter Amount',
-      },
-    ],
-  ],
-};
+import React, { useState } from 'react';
+import { render } from 'react-dom';
+import { Formik, Form as Myform, Field, ErrorMessage, getIn } from 'formik';
 
-function Form(props) {
+function getStyles(errors, fieldName) {
+  if (getIn(errors, fieldName)) {
+    return {
+      border: '1px solid red',
+    };
+  }
+}
+
+function CustomInput({ field, form: { errors } }) {
+  return (
+    <div>
+      <input {...field} style={getStyles(errors, field.name)} />
+      <ErrorMessage name={field.name} />
+    </div>
+  );
+}
+
+const Form = (props) => {
   const [value, setValue] = useState(0);
 
   const handleWithdraw = (e) => {
     e.preventDefault();
-    props.func(parseInt(value));
+    const date = new Date();
+    const ndate =
+      '' +
+      date.getDate() +
+      '-' +
+      (date.getMonth() + 1) +
+      '-' +
+      date.getFullYear();
+    if (!isNaN(parseInt(value)) && value !== 0)
+      props.func(parseInt(value), ndate);
   };
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+
   return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        {fields.sections.map((section, i) => {
-          return (
-            <div className="col-md-6" key={i}>
-              {section.map((field, indexField) => {
-                return (
-                  <Field
-                    {...field}
-                    key={indexField}
-                    value={props.values[field.name]}
-                    name={field.name}
-                    onchange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    touched={props.touched[field.name]}
-                    errors={props.errors[field.name]}
-                  />
-                );
-              })}
-            </div>
-          );
-        })}
-        {/* <input
-          type="number"
-          min={0}
-          value={value}
-          placeholder="Enter Amount"
-          onChange={handleChange}
-          required="required"
-          // name="name"
-        />
-        <p className="help-block text-danger">
-          {props.errors && <span> {props.errors}</span>}
-        </p> */}
-        <button type="submit" onClick={handleWithdraw}>
-          {props.name}
-        </button>
-      </div>
-    </form>
+    <Formik
+      initialValues={{
+        example: '',
+      }}
+      validate={(values) => {
+        const errors = {};
+
+        if (!values.example) errors.example = 'Required';
+
+        return errors;
+      }}
+      onSubmit={handleWithdraw}
+      render={(formProps) => {
+        return (
+          <Myform>
+            <Field
+              style={getStyles(formProps.errors, 'example')}
+              type="text"
+              name="example"
+              value={value}
+              onChange={handleChange}
+            />
+            <br />
+            <ErrorMessage name="example" />
+            <br />
+            <button type="submit" onClick={handleWithdraw}>
+              {props.name}
+            </button>
+            {/* <Field component={CustomInput} type="text" name="example" /> */}
+          </Myform>
+        );
+      }}
+    />
   );
-}
+};
 
-export default withFormik({
-  mapPropsToValues: () => ({
-    name: '',
-  }),
-  validate: (values) => {
-    const errors = {};
-
-    Object.keys(values).map((v) => {
-      if (!values[v]) {
-        errors[v] = 'Required';
-      }
-    });
-    return errors;
-  },
-  handleSubmit: (values, event) => {
-    alert("you've submitted the form");
-  },
-})(Form);
+export default Form;

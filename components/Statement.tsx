@@ -12,6 +12,7 @@ export default function Statement() {
             <th>Mode</th>
             <th>Amount</th>
             <th>Total</th>
+            <th>Date</th>
           </tr>
         </thead>
         {statement.map((value, index) => {
@@ -21,6 +22,7 @@ export default function Statement() {
                 <th>{value.type}</th>
                 <th>{value.amount}</th>
                 <th>{value.total}</th>
+                <th>{value.date}</th>
               </tr>
             </tbody>
           );
