@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { render } from 'react-dom';
 import { Formik, Form as Myform, Field, ErrorMessage, getIn } from 'formik';
 
 function getStyles(errors, fieldName) {
@@ -10,18 +9,18 @@ function getStyles(errors, fieldName) {
   }
 }
 
-function CustomInput({ field, form: { errors } }) {
-  return (
-    <div>
-      <input {...field} style={getStyles(errors, field.name)} />
-      <ErrorMessage name={field.name} />
-    </div>
-  );
-}
+// function CustomInput({ field, form: { errors } }) {
+//   return (
+//     <div>
+//       <input {...field} style={getStyles(errors, field.name)} />
+//       <ErrorMessage name={field.name} />
+//     </div>
+//   );
+// }
 
 const Form = (props) => {
   const [value, setValue] = useState(0);
-
+  const { showAlert } = props;
   const handleWithdraw = (e) => {
     e.preventDefault();
     const date = new Date();
@@ -32,8 +31,10 @@ const Form = (props) => {
       (date.getMonth() + 1) +
       '-' +
       date.getFullYear();
-    if (!isNaN(parseInt(value)) && value !== 0)
+    if (!isNaN(parseInt(value)) && value !== 0) {
       props.func(parseInt(value), ndate);
+      showAlert(props.name + ' ' + value, 'success');
+    }
   };
   const handleChange = (e) => {
     setValue(e.target.value);
