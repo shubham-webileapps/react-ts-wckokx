@@ -29,7 +29,7 @@ export default function App() {
     }, 500);
   };
   return (
-    <div>
+    <div className="container">
       <Router>
         <Navbar />
         <Routes>
