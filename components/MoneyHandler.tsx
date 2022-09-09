@@ -1,27 +1,23 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-import { actionCreators } from './state/index';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 const MoneyHandler = () => {
   const amount = useSelector((state) => state.amount);
-  const dispatch = useDispatch();
+
   return (
     <div>
       <h2>Deposit/Withdraw money</h2>
-      <h3> your balance is: {amount}</h3>
-      <button
-        className="btn btn-primary mx-2"
-        onClick={() => dispatch(actionCreators.depositMoney(100))}
-      >
+      <h3> your balance is: {amount[amount.length - 1].total}</h3>
+      <Link className="mx-2" to="/Deposit">
         Deposit
-      </button>
-      <button
-        className="btn btn-primary mx-2"
-        onClick={() => dispatch(actionCreators.withdrawMoney(100))}
-      >
+      </Link>
+      <Link className="mx-2" to="/Withdraw">
         Withdraw
-      </button>
-      <button className="btn btn-primary mx-2">Statement</button>
+      </Link>
+      <Link className="mx-2" to="/Statement">
+        Statement
+      </Link>
     </div>
   );
 };
