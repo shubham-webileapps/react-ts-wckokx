@@ -26,7 +26,7 @@ export default function App() {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 100);
+    }, 500);
   };
   return (
     <div>

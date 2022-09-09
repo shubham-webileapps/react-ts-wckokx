@@ -36,35 +36,43 @@ const Form = (props) => {
       showAlert(props.name + ' ' + value, 'success');
     }
   };
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
 
   return (
     <Formik
       initialValues={{
-        example: '',
+        example: value,
       }}
       validate={(values) => {
         const errors = {};
 
-        if (!values.example) errors.example = 'Required';
+        if (!values.example && values.example === 0)
+          errors.example = 'Required';
+        else errors.example = '';
 
         return errors;
       }}
       onSubmit={handleWithdraw}
       render={(formProps) => {
         return (
-          <Myform>
-            <Field
-              style={getStyles(formProps.errors, 'example')}
-              type="text"
-              name="example"
-              value={value}
-              onChange={handleChange}
-            />
-            <br />
-            <ErrorMessage name="example" />
+          <Myform className="container ">
+            <div className="form-group d-flex">
+              <label htmlFor="example">
+                <strong>Money</strong>
+              </label>
+
+              <Field
+                style={getStyles(formProps.errors, 'example')}
+                className="mx-4"
+                min={0}
+                type="number"
+                placeholder="Enter Amount"
+                id="example"
+                name="example"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+              <ErrorMessage name="example" />
+            </div>
             <br />
             <button type="submit" onClick={handleWithdraw}>
               {props.name}
