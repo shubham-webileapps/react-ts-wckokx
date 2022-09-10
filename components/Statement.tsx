@@ -73,6 +73,7 @@ export default function Statement() {
   const rows = [];
   statement.map((value, index) =>
     rows.push(
+      // (key = index),
       createData(index + 1, value.date, value.type, value.amount, value.total)
     )
   );
