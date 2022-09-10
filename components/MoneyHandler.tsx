@@ -1,32 +1,61 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from '@mui/material/Link';
 
-// import Container from '@mui/material/Container';
-// import Box from '@mui/material/Box';
-// import CssBaseline from '@mui/material/CssBaseline';
+import Button from '@mui/material/Button';
+
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+
+import Typography from '@mui/material/Typography';
+
 const MoneyHandler = () => {
   const amount = useSelector((state) => state.amount);
 
   return (
-    <div className="card">
-      <h5 className="card-header">Deposit/Withdraw money</h5>
-      <div className="card-body">
-        <h5 className="card-title">
-          your balance is: {amount[amount.length - 1].total}
-        </h5>
-        <Link component={RouterLink} className="mx-2" to="/Deposit">
-          Deposit
-        </Link>
-        <Link component={RouterLink} className="mx-2" to="/Withdraw">
-          Withdraw
-        </Link>
-        <Link component={RouterLink} className="mx-2" to="/Statement">
-          Statement
-        </Link>
-      </div>
-    </div>
+    <Box>
+      <Card>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Deposit/Withdraw money
+          </Typography>
+          <Typography variant="h5" color="text.primary">
+            your balance is: {amount[amount.length - 1].total}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={RouterLink}
+            size="small"
+            sx={{ color: 'red' }}
+            to="/Deposit"
+            type="submit"
+          >
+            Deposit
+          </Button>
+          <Button
+            component={RouterLink}
+            size="small"
+            sx={{ color: 'red' }}
+            to="/Withdraw"
+            type="submit"
+          >
+            Withdraw
+          </Button>
+          <Button
+            component={RouterLink}
+            size="small"
+            sx={{ color: 'red' }}
+            to="/Statement"
+            type="submit"
+          >
+            Statement
+          </Button>
+        </CardActions>
+      </Card>
+    </Box>
   );
 };
 export default MoneyHandler;
