@@ -19,8 +19,8 @@ import { useNavigate } from 'react-router-dom';
 
 function validateAmount(value) {
   let error;
-  if (!value) {
-    error = ' Its Required';
+  if (!value || value < 1) {
+    error = 'Amount should be greater then 0 ';
   }
   return error;
 }
@@ -75,7 +75,7 @@ const Form = (props) => {
                     validate={validateAmount}
                     type="number"
                     placeholder="100"
-                    min={0}
+                    minValue={0}
                     component={TextField}
                     InputLabelProps={{
                       shrink: true,
@@ -86,11 +86,12 @@ const Form = (props) => {
                           <CurrencyRupeeIcon />
                         </InputAdornment>
                       ),
+                      inputProps: { min: 1 },
                     }}
                     variant="standard"
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
-                    value={props.values.amount}
+                    // value={props.values.amount}
                     helperText={props.errors.amount}
                     required
                     error={!!props.errors.amount}
