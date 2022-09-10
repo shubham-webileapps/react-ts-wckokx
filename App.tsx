@@ -2,7 +2,6 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useState } from 'react';
 import Navbar from './components/Navbar';
 import MoneyHandler from './components/MoneyHandler';
 import Statement from './components/Statement';
