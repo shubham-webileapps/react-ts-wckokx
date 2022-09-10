@@ -1,18 +1,16 @@
-export const depositMoney = (amount, date) => {
+export const depositMoney = (amount) => {
   return (dispatch) => {
     dispatch({
       type: 'deposit',
       payload: amount,
-      date: date,
     });
   };
 };
-export const withdrawMoney = (amount, date) => {
+export const withdrawMoney = (amount) => {
   return (dispatch) => {
     dispatch({
       type: 'withdraw',
       payload: amount,
-      date: date,
     });
   };
 };

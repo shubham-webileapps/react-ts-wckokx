@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { actionCreators } from './state/index';
 import { bindActionCreators } from 'redux';
@@ -13,9 +13,9 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
-
 import { Formik, Form as MyForm, Field as MField } from 'formik';
 import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 
 function validateAmount(value) {
   let error;
@@ -28,6 +28,8 @@ function validateAmount(value) {
 const Form = (props) => {
   const { name } = props;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { depositMoney, withdrawMoney } = bindActionCreators(
     actionCreators,
     dispatch
@@ -41,19 +43,14 @@ const Form = (props) => {
             amount: 0,
           }}
           onSubmit={(values, actions) => {
-            const date = new Date();
-            const ndate =
-              date.getDate() +
-              '-' +
-              (date.getMonth() + 1) +
-              '-' +
-              date.getFullYear();
             if (!isNaN(parseInt(values.amount)) && values.amount !== 0) {
               if (props.name === 'Withdraw')
-                withdrawMoney(parseInt(values.amount), ndate);
+                withdrawMoney(parseInt(values.amount));
               if (props.name === 'Deposit')
-                depositMoney(parseInt(values.amount), ndate);
+                depositMoney(parseInt(values.amount));
               enqueueSnackbar(props.name + ' ' + values.amount + ' success');
+              //navigate to home
+              navigate('/');
             }
             actions.resetForm({
               values: {
