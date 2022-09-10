@@ -37,6 +37,7 @@ function validateAmount(value) {
 }
 
 const Form = (props) => {
+  const { name } = props;
   const dispatch = useDispatch();
   const { depositMoney, withdrawMoney } = bindActionCreators(
     actionCreators,
@@ -67,7 +68,7 @@ const Form = (props) => {
           initialValues={{
             amount: 0,
           }}
-          onSubmit={(values) => {
+          onSubmit={(values, actions) => {
             const date = new Date();
             const ndate =
               date.getDate() +
@@ -82,13 +83,18 @@ const Form = (props) => {
                 depositMoney(parseInt(values.amount), ndate);
               enqueueSnackbar(props.name + ' ' + values.amount + ' success');
             }
+            actions.resetForm({
+              values: {
+                amount: 0,
+              },
+            });
           }}
         >
-          {({ errors, touched, isValidating, handleChange }) => (
+          {(props) => (
             <MyForm>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {props.name} Form
+                  {name} Form
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   <MField
@@ -99,7 +105,7 @@ const Form = (props) => {
                     aria-describedby="inputGroupPrepend2"
                     validate={validateAmount}
                     type="number"
-                    placeholder="Enter Amount"
+                    placeholder="100"
                     min={0}
                     component={TextField}
                     InputLabelProps={{
@@ -114,8 +120,10 @@ const Form = (props) => {
                     }}
                     variant="standard"
                     // value={20}
-                    onChange={handleChange}
-                    helperText={errors.amount}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.amount}
+                    helperText={props.errors.amount}
                     // {!errors.amount}
                     // error
                   />
@@ -126,7 +134,7 @@ const Form = (props) => {
               </CardContent>
               <CardActions>
                 <Button size="small" sx={{ color: 'red' }} type="submit">
-                  {props.name}
+                  {name}
                 </Button>
               </CardActions>
             </MyForm>
