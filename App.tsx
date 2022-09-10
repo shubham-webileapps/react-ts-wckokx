@@ -9,20 +9,8 @@ import Statement from './components/Statement';
 import './style.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Form from './components/Form';
-import Alert from './components/Alert';
 
 export default function App() {
-  const [alert, setAlert] = useState(null);
-
-  const showAlert = (message, type) => {
-    setAlert({
-      msg: message,
-      type: type,
-    });
-    setTimeout(() => {
-      setAlert(null);
-    }, 500);
-  };
   return (
     <React.Fragment>
       <CssBaseline />
@@ -36,16 +24,15 @@ export default function App() {
               <Route
                 exact
                 path="/Withdraw"
-                element={<Form name="Withdraw" showAlert={showAlert} />}
+                element={<Form name="Withdraw" />}
               ></Route>
               <Route
                 exact
                 path="/Deposit"
-                element={<Form name="Deposit" showAlert={showAlert} />}
+                element={<Form name="Deposit" />}
               ></Route>
             </Routes>
           </Router>
-          <Alert alert={alert} />
         </Box>
       </Container>
     </React.Fragment>

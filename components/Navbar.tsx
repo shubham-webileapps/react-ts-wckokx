@@ -4,9 +4,10 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
 const Navbar = () => {
   return (
@@ -18,7 +19,7 @@ const Navbar = () => {
             component={RouterLink}
             to="/"
           >
-            <AdbIcon
+            <AccountBalanceIcon
               sx={{
                 display: { xs: 'none', color: 'white', md: 'flex' },
                 mr: 1,
@@ -50,7 +51,7 @@ const Navbar = () => {
             component={RouterLink}
             to="/"
           >
-            <AdbIcon
+            <AccountBalanceIcon
               sx={{
                 display: { xs: 'flex', md: 'none', color: 'white' },
                 mr: 1,
