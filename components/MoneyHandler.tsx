@@ -31,7 +31,6 @@ const MoneyHandler = () => {
             size="small"
             sx={{ color: 'red' }}
             to="/Deposit"
-            type="submit"
           >
             Deposit
           </Button>
@@ -40,7 +39,6 @@ const MoneyHandler = () => {
             size="small"
             sx={{ color: 'red' }}
             to="/Withdraw"
-            type="submit"
           >
             Withdraw
           </Button>
@@ -49,7 +47,6 @@ const MoneyHandler = () => {
             size="small"
             sx={{ color: 'red' }}
             to="/Statement"
-            type="submit"
           >
             Statement
           </Button>
