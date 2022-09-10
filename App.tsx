@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import MoneyHandler from './components/MoneyHandler';
@@ -29,33 +32,42 @@ export default function App() {
     }, 500);
   };
   return (
-    <div className="container">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<MoneyHandler />}></Route>
-          <Route exact path="/Statement" element={<Statement />}></Route>
-          <Route
-            exact
-            path="/Withdraw"
-            element={
-              <Form
-                func={withdrawMoney}
-                name="Withdraw"
-                showAlert={showAlert}
-              />
-            }
-          ></Route>
-          <Route
-            exact
-            path="/Deposit"
-            element={
-              <Form func={depositMoney} name="Deposit" showAlert={showAlert} />
-            }
-          ></Route>
-        </Routes>
-      </Router>
-      <Alert alert={alert} />
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Box>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route exact path="/" element={<MoneyHandler />}></Route>
+              <Route exact path="/Statement" element={<Statement />}></Route>
+              <Route
+                exact
+                path="/Withdraw"
+                element={
+                  <Form
+                    func={withdrawMoney}
+                    name="Withdraw"
+                    showAlert={showAlert}
+                  />
+                }
+              ></Route>
+              <Route
+                exact
+                path="/Deposit"
+                element={
+                  <Form
+                    func={depositMoney}
+                    name="Deposit"
+                    showAlert={showAlert}
+                  />
+                }
+              ></Route>
+            </Routes>
+          </Router>
+          <Alert alert={alert} />
+        </Box>
+      </Container>
+    </React.Fragment>
   );
 }
