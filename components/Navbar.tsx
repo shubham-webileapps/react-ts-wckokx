@@ -28,11 +28,13 @@ const Navbar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="Link"
+            component={RouterLink}
+            underline="none"
             to="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex', color: 'white' },
+              hover: { color: 'white' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -58,11 +60,13 @@ const Navbar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="Link"
+            component={RouterLink}
+            underline="none"
             to="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', color: 'white', md: 'none' },
+              hover: { color: 'white' },
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,

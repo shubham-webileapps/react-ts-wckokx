@@ -69,7 +69,7 @@ export default function Statement() {
   const rows = [];
   statement.map((value, index) =>
     rows.push(
-      createData(index, value.date, value.type, value.amount, value.total)
+      createData(index + 1, value.date, value.type, value.amount, value.total)
     )
   );
   const [page, setPage] = React.useState(0);

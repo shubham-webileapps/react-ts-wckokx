@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Formik, Form as MyForm, Field, getIn, ErrorMessage } from 'formik';
+import {
+  Formik,
+  Form as MyForm,
+  Field as MField,
+  getIn,
+  ErrorMessage,
+} from 'formik';
 import TextField from '@mui/material/TextField';
 function getStyles(errors, fieldName) {
   if (getIn(errors, fieldName)) {
@@ -69,7 +75,7 @@ const Form = (props) => {
             <div className="col-md-12 mb-3">
               <div className="input-group">
                 {/* <TextField
-                  error={validateAmount}
+                  
                   label="Amount"
                   style={getStyles(errors, 'amount')}
                   className=" form-control"
@@ -82,7 +88,7 @@ const Form = (props) => {
                   min={0}
                   variant="standard"
                 /> */}
-                <Field
+                <MField
                   style={getStyles(errors, 'amount')}
                   className=" form-control"
                   name="amount"
@@ -92,6 +98,7 @@ const Form = (props) => {
                   type="number"
                   placeholder="Enter Amount"
                   min={0}
+                  // component={TextField}
                   variant="standard"
                 />
               </div>
