@@ -1,16 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-
-import Button from '@mui/material/Button';
-
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-
-import Typography from '@mui/material/Typography';
-
+import {
+  Button,
+  Box,
+  CardContent,
+  CardActions,
+  Card,
+  Typography,
+} from '@mui/material';
 const MoneyHandler = () => {
   const amount = useSelector((state) => state.amount);
 

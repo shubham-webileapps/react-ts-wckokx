@@ -3,30 +3,19 @@ import { useDispatch } from 'react-redux';
 import { actionCreators } from './state/index';
 import { bindActionCreators } from 'redux';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import InputAdornment from '@mui/material/InputAdornment';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import {
-  Formik,
-  Form as MyForm,
-  Field as MField,
-  getIn,
-  ErrorMessage,
-} from 'formik';
-import TextField from '@mui/material/TextField';
-import { useSnackbar } from 'notistack';
+  Button,
+  Box,
+  CardContent,
+  CardActions,
+  Card,
+  InputAdornment,
+  Typography,
+  TextField,
+} from '@mui/material';
 
-// function getStyles(errors, fieldName) {
-//   if (getIn(errors, fieldName)) {
-//     return {
-//       border: '1px solid red',
-//     };
-//   }
-// }
+import { Formik, Form as MyForm, Field as MField } from 'formik';
+import { useSnackbar } from 'notistack';
 
 function validateAmount(value) {
   let error;
@@ -43,24 +32,7 @@ const Form = (props) => {
     actionCreators,
     dispatch
   );
-  const [value, setValue] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
-
-  // const handleWithdraw = () => {
-  //   const date = new Date();
-  //   const ndate =
-  //     '' +
-  //     date.getDate() +
-  //     '-' +
-  //     (date.getMonth() + 1) +
-  //     '-' +
-  //     date.getFullYear();
-  //   if (!isNaN(parseInt(value)) && value !== 0) {
-  //     if (props.name === 'Withdraw') withdrawMoney(parseInt(value), ndate);
-  //     if (props.name === 'Deposit') depositMoney(parseInt(value), ndate);
-  //     enqueueSnackbar(props.name + ' ' + value + ' success');
-  //   }
-  // };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Card container spacing={2}>
@@ -119,17 +91,13 @@ const Form = (props) => {
                       ),
                     }}
                     variant="standard"
-                    // value={20}
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
                     value={props.values.amount}
                     helperText={props.errors.amount}
-                    // {!errors.amount}
-                    // error
+                    required
+                    error={!!props.errors.amount}
                   />
-
-                  {/* <ErrorMessage name="amount" /> */}
-                  {/* {errors.amount && touched.amount && <div>{errors.amount}</div>} */}
                 </Typography>
               </CardContent>
               <CardActions>
