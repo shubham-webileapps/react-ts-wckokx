@@ -9,17 +9,9 @@ import Statement from './components/Statement';
 import './style.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Form from './components/Form';
-import { bindActionCreators } from 'redux';
-import { actionCreators } from './components/state/index';
 import Alert from './components/Alert';
-import { useDispatch } from 'react-redux';
 
 export default function App() {
-  const dispatch = useDispatch();
-  const { depositMoney, withdrawMoney } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
@@ -44,24 +36,12 @@ export default function App() {
               <Route
                 exact
                 path="/Withdraw"
-                element={
-                  <Form
-                    func={withdrawMoney}
-                    name="Withdraw"
-                    showAlert={showAlert}
-                  />
-                }
+                element={<Form name="Withdraw" showAlert={showAlert} />}
               ></Route>
               <Route
                 exact
                 path="/Deposit"
-                element={
-                  <Form
-                    func={depositMoney}
-                    name="Deposit"
-                    showAlert={showAlert}
-                  />
-                }
+                element={<Form name="Deposit" showAlert={showAlert} />}
               ></Route>
             </Routes>
           </Router>

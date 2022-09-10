@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { actionCreators } from './state/index';
+import { bindActionCreators } from 'redux';
 import {
   Formik,
   Form as MyForm,
@@ -7,6 +10,7 @@ import {
   ErrorMessage,
 } from 'formik';
 import TextField from '@mui/material/TextField';
+
 function getStyles(errors, fieldName) {
   if (getIn(errors, fieldName)) {
     return {
@@ -18,20 +22,17 @@ function getStyles(errors, fieldName) {
 function validateAmount(value) {
   let error;
   if (!value) {
-    error = 'Required';
-  }
-  return error;
-}
-
-function validateUsername(value) {
-  let error;
-  if (value === 'admin') {
-    error = 'Nice try!';
+    error = ' Its Required';
   }
   return error;
 }
 
 const Form = (props) => {
+  const dispatch = useDispatch();
+  const { depositMoney, withdrawMoney } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
   const [value, setValue] = useState(0);
   const { showAlert } = props;
   const handleWithdraw = () => {
@@ -44,7 +45,8 @@ const Form = (props) => {
       '-' +
       date.getFullYear();
     if (!isNaN(parseInt(value)) && value !== 0) {
-      props.func(parseInt(value), ndate);
+      if (props.name === 'Withdraw') withdrawMoney(parseInt(value), ndate);
+      if (props.name === 'Deposit') depositMoney(parseInt(value), ndate);
       showAlert(props.name + ' ' + value, 'success');
     }
   };
@@ -58,38 +60,26 @@ const Form = (props) => {
         onSubmit={(values) => {
           const date = new Date();
           const ndate =
-            '' +
             date.getDate() +
             '-' +
             (date.getMonth() + 1) +
             '-' +
             date.getFullYear();
           if (!isNaN(parseInt(values.amount)) && values.amount !== 0) {
-            props.func(parseInt(values.amount), ndate);
+            if (props.name === 'Withdraw')
+              withdrawMoney(parseInt(values.amount), ndate);
+            if (props.name === 'Deposit')
+              depositMoney(parseInt(values.amount), ndate);
             showAlert(props.name + ' ' + values.amount, 'success');
           }
         }}
       >
-        {({ errors, touched, isValidating }) => (
+        {({ errors, touched, isValidating, handleChange, amount }) => (
           <MyForm>
             <div className="col-md-12 mb-3">
               <div className="input-group">
-                {/* <TextField
-                  
-                  label="Amount"
-                  style={getStyles(errors, 'amount')}
-                  className=" form-control"
-                  name="amount"
-                  id="amount"
-                  
-                  aria-describedby="inputGroupPrepend2"
-                  // validate={validateAmount}
-                  type="number"
-                  min={0}
-                  variant="standard"
-                /> */}
                 <MField
-                  style={getStyles(errors, 'amount')}
+                  // style={getStyles(errors, 'amount')}
                   className=" form-control"
                   name="amount"
                   id="amount"
@@ -98,14 +88,19 @@ const Form = (props) => {
                   type="number"
                   placeholder="Enter Amount"
                   min={0}
-                  // component={TextField}
+                  component={TextField}
                   variant="standard"
+                  // value={20}
+                  onChange={handleChange}
+                  helperText={errors.amount}
+                  // {!errors.amount}
+                  // error
                 />
               </div>
             </div>
 
             {/* <ErrorMessage name="amount" /> */}
-            {errors.amount && touched.amount && <div>{errors.amount}</div>}
+            {/* {errors.amount && touched.amount && <div>{errors.amount}</div>} */}
             <br />
             <button
               type="submit"
