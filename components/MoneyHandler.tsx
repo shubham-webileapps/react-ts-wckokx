@@ -1,7 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@mui/material/Link';
 
+// import Container from '@mui/material/Container';
+// import Box from '@mui/material/Box';
+// import CssBaseline from '@mui/material/CssBaseline';
 const MoneyHandler = () => {
   const amount = useSelector((state) => state.amount);
 
@@ -12,13 +16,13 @@ const MoneyHandler = () => {
         <h5 className="card-title">
           your balance is: {amount[amount.length - 1].total}
         </h5>
-        <Link className="mx-2" to="/Deposit">
+        <Link component={RouterLink} className="mx-2" to="/Deposit">
           Deposit
         </Link>
-        <Link className="mx-2" to="/Withdraw">
+        <Link component={RouterLink} className="mx-2" to="/Withdraw">
           Withdraw
         </Link>
-        <Link className="mx-2" to="/Statement">
+        <Link component={RouterLink} className="mx-2" to="/Statement">
           Statement
         </Link>
       </div>

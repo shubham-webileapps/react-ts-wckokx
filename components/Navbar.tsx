@@ -1,17 +1,23 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@mui/material/Link';
 
 const Navbar = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link className="navbar-brand d-flex justify-content-start" to="/">
+          <Link
+            className="navbar-brand d-flex justify-content-start"
+            component={RouterLink}
+            to="/"
+          >
             <AdbIcon
               sx={{
                 display: { xs: 'none', color: 'white', md: 'flex' },
@@ -37,7 +43,11 @@ const Navbar = () => {
             My Bank
           </Typography>
 
-          <Link className="navbar-brand d-flex justify-content-start" to="/">
+          <Link
+            className="navbar-brand d-flex justify-content-start"
+            component={RouterLink}
+            to="/"
+          >
             <AdbIcon
               sx={{
                 display: { xs: 'flex', md: 'none', color: 'white' },

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@mui/material/Link';
 
 interface Column {
   id: 'a' | 'date' | 'mode' | 'amount' | 'total';
@@ -128,10 +130,10 @@ export default function Statement() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      <Link className="mx-2" to="/Deposit">
+      <Link component={RouterLink} className="mx-2" to="/Deposit">
         Deposit
       </Link>
-      <Link className="mx-2" to="/Withdraw">
+      <Link component={RouterLink} className="mx-2" to="/Withdraw">
         Withdraw
       </Link>
     </Paper>

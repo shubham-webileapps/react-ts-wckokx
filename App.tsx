@@ -34,7 +34,7 @@ export default function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="sm">
+      <Container>
         <Box>
           <Router>
             <Navbar />
