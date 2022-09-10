@@ -1,76 +1,6 @@
-// import React, { useState } from 'react';
-// import { Formik, Form as Myform, Field, ErrorMessage, getIn } from 'formik';
-
-//
-// const Form = (props) => {
-//   const [value, setValue] = useState(0);
-//   const { showAlert } = props;
-//   const handleWithdraw = (e) => {
-//     e.preventDefault();
-//     const date = new Date();
-//     const ndate =
-//       '' +
-//       date.getDate() +
-//       '-' +
-//       (date.getMonth() + 1) +
-//       '-' +
-//       date.getFullYear();
-//     if (!isNaN(parseInt(value)) && value !== 0) {
-//       props.func(parseInt(value), ndate);
-//       showAlert(props.name + ' ' + value, 'success');
-//     }
-//   };
-
-//   return (
-//     <Formik
-//       validateOnChange
-//       initialValues={{
-//         amount: value,
-//       }}
-//       validate={(values) => {
-//         const errors = {};
-
-//         if (!values.amount && values.amount === 0) errors.amount = 'Required';
-//         else errors.amount = '';
-
-//         return errors;
-//       }}
-//       onSubmit={handleWithdraw}
-//       render={(formProps, handleChange) => {
-//         return (
-//           <Myform className="container ">
-//             <div className="form-group d-flex">
-//               <label htmlFor="amount">
-//                 <strong>Money</strong>
-//               </label>
-
-//               <Field
-//                 style={getStyles(formProps.errors, 'amount')}
-//                 className="mx-4"
-//                 min={0}
-//                 type="number"
-//                 placeholder="Enter Amount"
-//                 id="amount"
-//                 name="amount"
-//                 value={value}
-//                 onChange={handleChange}
-//               />
-//               <ErrorMessage name="amount" />
-//             </div>
-//             <br />
-//             <button type="submit" onClick={handleWithdraw}>
-//               {props.name}
-//             </button>
-//           </Myform>
-//         );
-//       }}
-//     />
-//   );
-// };
-
-// export default Form;
 import React, { useState } from 'react';
 import { Formik, Form as MyForm, Field, getIn, ErrorMessage } from 'formik';
+import TextField from '@mui/material/TextField';
 function getStyles(errors, fieldName) {
   if (getIn(errors, fieldName)) {
     return {
@@ -136,15 +66,22 @@ const Form = (props) => {
       >
         {({ errors, touched, isValidating }) => (
           <MyForm>
-            <div class="col-md-12 mb-3">
-              <label for="amount">Amount</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend2">
-                    Rs
-                  </span>
-                </div>
-
+            <div className="col-md-12 mb-3">
+              <div className="input-group">
+                {/* <TextField
+                  error={validateAmount}
+                  label="Amount"
+                  style={getStyles(errors, 'amount')}
+                  className=" form-control"
+                  name="amount"
+                  id="amount"
+                  
+                  aria-describedby="inputGroupPrepend2"
+                  // validate={validateAmount}
+                  type="number"
+                  min={0}
+                  variant="standard"
+                /> */}
                 <Field
                   style={getStyles(errors, 'amount')}
                   className=" form-control"
@@ -155,12 +92,13 @@ const Form = (props) => {
                   type="number"
                   placeholder="Enter Amount"
                   min={0}
+                  variant="standard"
                 />
               </div>
             </div>
 
-            <ErrorMessage name="amount" />
-            {/* {errors.amount && touched.amount && <div>{errors.amount}</div>} */}
+            {/* <ErrorMessage name="amount" /> */}
+            {errors.amount && touched.amount && <div>{errors.amount}</div>}
             <br />
             <button
               type="submit"
