@@ -13,7 +13,7 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
-import { Formik, Form as MyForm, Field as MField } from 'formik';
+import { Formik, Form as MyForm, Field } from 'formik';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 
@@ -66,8 +66,8 @@ const Form = (props) => {
                   {name} Form
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  <MField
-                    className=" form-control"
+                  <Field
+                    // className=" form-control"
                     name="amount"
                     id="amount"
                     label="Amount"
@@ -90,7 +90,6 @@ const Form = (props) => {
                     variant="standard"
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
-                    // value={props.values.amount}
                     helperText={props.errors.amount}
                     required
                     error={!!props.errors.amount}

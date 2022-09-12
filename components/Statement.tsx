@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Paper,
   Button,
@@ -137,7 +137,7 @@ export default function Statement() {
             </TableContainer>
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
-              component="div"
+              // component="div"
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
@@ -147,7 +147,7 @@ export default function Statement() {
           </CardContent>
           <CardActions>
             <Button
-              component={RouterLink}
+              component={Link}
               size="small"
               sx={{ color: 'red' }}
               to="/Deposit"
@@ -155,7 +155,7 @@ export default function Statement() {
               Deposit
             </Button>
             <Button
-              component={RouterLink}
+              component={Link}
               size="small"
               sx={{ color: 'red' }}
               to="/Withdraw"

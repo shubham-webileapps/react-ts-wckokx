@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Box,
@@ -25,7 +25,7 @@ const MoneyHandler = () => {
         </CardContent>
         <CardActions>
           <Button
-            component={RouterLink}
+            component={Link}
             size="small"
             sx={{ color: 'red' }}
             to="/Deposit"
@@ -33,7 +33,7 @@ const MoneyHandler = () => {
             Deposit
           </Button>
           <Button
-            component={RouterLink}
+            component={Link}
             size="small"
             sx={{ color: 'red' }}
             to="/Withdraw"
@@ -41,7 +41,7 @@ const MoneyHandler = () => {
             Withdraw
           </Button>
           <Button
-            component={RouterLink}
+            component={Link}
             size="small"
             sx={{ color: 'red' }}
             to="/Statement"

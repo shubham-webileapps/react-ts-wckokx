@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { AppBar, Button, Typography } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
 const Navbar = () => {
   return (
     <AppBar position="static">
       <Button
-        className="navbar-brand d-flex justify-content-start"
-        component={RouterLink}
+        // className="navbar-brand d-flex justify-content-start"
+        component={Link}
         to="/"
       >
         <AccountBalanceIcon
@@ -34,12 +34,12 @@ const Navbar = () => {
         >
           My Bank
         </Typography>
-      </Button>
+        {/* </Button>
       <Button
         className="navbar-brand d-flex justify-content-start"
-        component={RouterLink}
+        component={Link}
         to="/"
-      >
+      > */}
         <AccountBalanceIcon
           sx={{
             display: { xs: 'flex', md: 'none', color: 'white' },

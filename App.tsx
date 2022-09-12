@@ -13,8 +13,8 @@ export default function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container>
-        <Box>
+      <Box>
+        <Container>
           <Router>
             <Navbar />
             <Routes>
@@ -32,8 +32,8 @@ export default function App() {
               ></Route>
             </Routes>
           </Router>
-        </Box>
-      </Container>
+        </Container>
+      </Box>
     </React.Fragment>
   );
 }
