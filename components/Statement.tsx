@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Paper,
   Button,
@@ -18,66 +18,57 @@ import {
 } from '@mui/material';
 
 interface Column {
-  id: 'key' | 'date' | 'mode' | 'amount' | 'total';
+  id: 'date' | 'mode' | 'amount' | 'total';
   label: string;
   minWidth?: number;
-  align?: 'right';
+  align?: 'left';
   format?: (value: number) => string;
 }
 
 const columns: Column[] = [
-  { id: 'key', label: '#', minWidth: 20 },
   { id: 'date', label: 'Date', minWidth: 100 },
   {
-    id: 'mode',
+    id: 'type',
     label: 'Mode',
     minWidth: 170,
-    align: 'right',
+    align: 'left',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'amount',
     label: 'Amount',
     minWidth: 170,
-    align: 'right',
+    align: 'left',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'total',
     label: 'Total',
     minWidth: 170,
-    align: 'right',
+    align: 'left',
     format: (value: number) => value.toFixed(2),
   },
 ];
 
 interface Data {
-  key: number;
   date: string;
-  mode: string;
+  type: string;
   amount: number;
   total: number;
 }
 
 function createData(
-  key: number,
   date: string,
-  mode: string,
+  type: string,
   amount: number,
   total: number
 ): Data {
-  return { key, date, mode, amount, total };
+  return { date, type, amount, total };
 }
 
 export default function Statement() {
   const statement = useSelector((state) => state.amount);
-  const rows = [];
-  statement.map((value, index) =>
-    rows.push(
-      // (key = index),
-      createData(index + 1, value.date, value.type, value.amount, value.total)
-    )
-  );
+  const rows = statement;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -101,8 +92,9 @@ export default function Statement() {
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
-                    {columns.map((column) => (
-                      <TableCell key={column.id} style={{ minWidth: 10 }}>
+                    <TableCell style={{ minWidth: 10 }}>#</TableCell>
+                    {columns.map((column, index) => (
+                      <TableCell key={index} style={{ minWidth: 10 }}>
                         {column.label}
                       </TableCell>
                     ))}
@@ -111,18 +103,19 @@ export default function Statement() {
                 <TableBody>
                   {rows
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
+                    .map((row, index) => {
                       return (
                         <TableRow
                           hover
                           role="checkbox"
                           tabIndex={-1}
-                          key={row.code}
+                          key={index}
                         >
-                          {columns.map((column) => {
+                          <TableCell align="left">{index + 1}</TableCell>
+                          {columns.map((column, i) => {
                             const value = row[column.id];
                             return (
-                              <TableCell key={column.id} align={column.align}>
+                              <TableCell key={i} align={column.align}>
                                 {column.format && typeof value === 'number'
                                   ? column.format(value)
                                   : value}
@@ -137,7 +130,7 @@ export default function Statement() {
             </TableContainer>
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
-              // component="div"
+              component="div"
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
@@ -147,7 +140,7 @@ export default function Statement() {
           </CardContent>
           <CardActions>
             <Button
-              component={Link}
+              component={RouterLink}
               size="small"
               sx={{ color: 'red' }}
               to="/Deposit"
@@ -155,7 +148,7 @@ export default function Statement() {
               Deposit
             </Button>
             <Button
-              component={Link}
+              component={RouterLink}
               size="small"
               sx={{ color: 'red' }}
               to="/Withdraw"

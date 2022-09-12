@@ -94,14 +94,14 @@ export default function DenseAppBar() {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              // sx={{ mr: 2 }}
             >
               <AccountBalanceIcon />
               <Typography
                 variant="h5"
                 color="inherit"
                 component="div"
-                sx={{ mx: '10px' }}
+                sx={{ ml: '10px' }}
               >
                 My Bank
               </Typography>
