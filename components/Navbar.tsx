@@ -69,3 +69,46 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+
+export default function DenseAppBar() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Button
+            component={Link}
+            to="/"
+            sx={{
+              display: { xs: 'flex', color: 'white' },
+              mr: 1,
+            }}
+          >
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <AccountBalanceIcon />
+              <Typography
+                variant="h5"
+                color="inherit"
+                component="div"
+                sx={{ mx: '10px' }}
+              >
+                My Bank
+              </Typography>
+            </IconButton>
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+}
