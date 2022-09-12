@@ -37,7 +37,7 @@ const Form = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Card container spacing={2}>
+      <Card container="true" spacing={2}>
         <Formik
           initialValues={{
             amount: 0,
@@ -62,7 +62,7 @@ const Form = (props) => {
           {(props) => (
             <MyForm>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5">
                   {name} Form
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -75,7 +75,6 @@ const Form = (props) => {
                     validate={validateAmount}
                     type="number"
                     placeholder="100"
-                    minValue={0}
                     component={TextField}
                     InputLabelProps={{
                       shrink: true,

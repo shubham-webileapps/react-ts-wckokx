@@ -21,9 +21,6 @@ const Navbar = () => {
         <Typography
           variant="h6"
           noWrap
-          // component={Button}
-          // underline="none"
-          // to="/"
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex', color: 'white' },
@@ -53,9 +50,6 @@ const Navbar = () => {
         <Typography
           variant="h5"
           noWrap
-          // component={Button}
-          // underline="none"
-          // to="/"
           sx={{
             mr: 2,
             display: { xs: 'flex', color: 'white', md: 'none' },

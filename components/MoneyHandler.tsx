@@ -16,7 +16,7 @@ const MoneyHandler = () => {
     <Box>
       <Card>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5">
             Deposit/Withdraw money
           </Typography>
           <Typography variant="h5" color="text.primary">
