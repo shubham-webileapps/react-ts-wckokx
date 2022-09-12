@@ -62,10 +62,14 @@ const Form = (props) => {
           {(props) => (
             <MyForm>
               <CardContent>
-                <Typography gutterBottom variant="h5">
+                <Typography gutterBottom variant="h5" component="span">
                   {name} Form
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  component="div"
+                  color="text.secondary"
+                >
                   <Field
                     // className=" form-control"
                     name="amount"
@@ -85,7 +89,7 @@ const Form = (props) => {
                           <CurrencyRupeeIcon />
                         </InputAdornment>
                       ),
-                      inputProps: { min: 1 },
+                      inputProps: { min: 0 },
                     }}
                     variant="standard"
                     onChange={props.handleChange}
