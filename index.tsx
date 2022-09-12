@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './components/state/store';
 import App from './App';
 import { SnackbarProvider } from 'notistack';
+import './style.css';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

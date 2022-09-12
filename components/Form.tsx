@@ -96,6 +96,11 @@ const Form = (props) => {
                     onBlur={props.handleBlur}
                     helperText={props.errors.amount}
                     required
+                    onInvalid={(e, msg = props.errors.amount) =>
+                      e.target.setCustomValidity(
+                        msg ? msg : 'please enter an amount'
+                      )
+                    }
                     error={!!props.errors.amount}
                   />
                 </Typography>
