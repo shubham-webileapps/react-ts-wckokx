@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 function validateAmount(value) {
   let error;
   if (!value || value < 1) {
-    error = 'Amount should be greater then 0 ';
+    error = 'Please enter an amount ';
   }
   return error;
 }
@@ -98,7 +98,7 @@ const Form = (props) => {
                     required
                     onInvalid={(e, msg = props.errors.amount) =>
                       e.target.setCustomValidity(
-                        msg ? msg : 'please enter an amount'
+                        msg ? msg : 'Please enter an amount'
                       )
                     }
                     error={!!props.errors.amount}
